@@ -4,7 +4,7 @@ const contentStyle = {
     textAlign: "center",
     minHeight: "calc(100vh - 60px)",
     color: "#fff",
-    backgroundColor: "#013240",
+    backgroundColor: "rgb(0, 21, 41)",
     padding: '1rem'
   };
 
