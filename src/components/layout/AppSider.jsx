@@ -1,4 +1,4 @@
-import {Card, Layout, Statistic, List, Typography, Spin, Tag} from "antd";
+import {Card, Layout, Statistic, List, Typography, Tag} from "antd";
 import {ArrowUpOutlined, ArrowDownOutlined} from "@ant-design/icons";
 import {useContext} from "react";
 import {capitalize} from "../../utils.js";
@@ -6,14 +6,11 @@ import CryptoContext from "../../context/crypto-context.jsx";
 
 const siderStyle = {
     padding: "1rem",
+    backgroundColor: "#013240",
 };
 
 export default function AppSider() {
-const {loading, assets} = useContext(CryptoContext)
-
-    if (loading) {
-        return <Spin fullscreen/>;
-    }
+const {assets} = useContext(CryptoContext)
 
     return (<Layout.Sider width="25%" style={siderStyle}>
         {assets.map((asset) => (<Card key={asset.id} style={{marginBottom: "1rem"}}>
