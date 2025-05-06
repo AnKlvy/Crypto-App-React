@@ -21,7 +21,7 @@ export default function AppContent() {
     }, {})
 
     return (<Layout.Content style={contentStyle}>
-        <Typography.Title level={3} style={{textAlign: 'left', color:'white'}}>
+        <Typography.Title level={3} style={{}}>
             Portfolio:{' '}
             {assets
                 .map((asset)=> asset.amount * cryptoPriceMap[asset.id])

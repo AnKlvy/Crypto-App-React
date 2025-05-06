@@ -1,6 +1,6 @@
 import AppHeader from "./header/AppHeader.jsx";
 import {Layout, Spin} from "antd";
-import AppSider from "./AppSider.jsx";
+import AppSider from "./sider/AppSider.jsx";
 import AppContent from "./content/AppContent.jsx";
 import {useContext} from "react";
 import CryptoContext from "../../context/crypto-context.jsx";

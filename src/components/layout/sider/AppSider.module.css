@@ -1,0 +1,8 @@
+.card:hover{
+    transform: translate(6px, 6px);
+}
+
+.card {
+    transition: all 0.35s ease;
+    border: #ffc3af solid 2px;
+}
