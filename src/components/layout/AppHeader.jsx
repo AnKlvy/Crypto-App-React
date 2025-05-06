@@ -1,6 +1,6 @@
 import {Button, Drawer, Layout, Modal, Select, Space} from 'antd';
 import {useCrypto} from "../../context/crypto-context.jsx";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import CryptoInfoModal from "../CryptoInfoModal.jsx";
 import AddAssetForm from "../AddAssetForm.jsx";
 
@@ -20,14 +20,24 @@ export default function AppHeader() {
     const [modal, setModal] = useState(false);
     const [coin, setCoin] = useState(null);
     const [drawer, setDrawer] = useState(true);
+    const selectRef = useRef(null);
     useEffect(() => {
-        const keypress = (event) => {
-            if (event.key === '/') {
-                setSelect((prev) => !prev);
+        const keydown = (event) => {
+            if (event.code === 'Slash') {
+                setSelect((prev) => {
+                    const next = !prev;
+                    if (next) {
+                        setTimeout(() => {
+                            const input = document.querySelector('.ant-select-selector input');
+                            input?.focus();
+                        }, 0);
+                    }
+                    return next;
+                });
             }
         };
-        document.addEventListener('keypress', keypress);
-        return () => document.removeEventListener('keypress', keypress);
+        document.addEventListener('keydown', keydown);
+        return () => document.removeEventListener('keydown', keydown);
     }, []);
 
     function handleSelect(value) {
@@ -38,6 +48,7 @@ export default function AppHeader() {
     return (
         <Layout.Header style={headerStyle}>
             <Select
+                ref={selectRef}
                 style={{width: 250}}
                 optionLabelProp="label"
                 value="press / to open"
@@ -55,7 +66,7 @@ export default function AppHeader() {
                         {option.data.label}
                     </Space>
                 )}/>
-            <Button type="primary" onClick={()=> setDrawer(true)}>Add asset</Button>
+            <Button type="primary" onClick={() => setDrawer(true)}>Add asset</Button>
             <Modal open={modal} onCancel={() => setModal(false)} footer={null}>
                 <CryptoInfoModal coin={coin}/>
             </Modal>
