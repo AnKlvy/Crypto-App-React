@@ -4,7 +4,7 @@ import CoinInfo from "./CoinInfo.jsx";
 export default function CryptoInfoModal({coin}) {
     return (
         <>
-            <CoinInfo coin={coin} />
+            <CoinInfo coin={coin} withSymbol={true} />
             <Divider/>
             <Typography.Paragraph>
                 <Typography.Text strong>1 hour: </Typography.Text>
