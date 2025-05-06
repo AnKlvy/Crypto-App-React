@@ -4,13 +4,20 @@ import {useCrypto} from "../context/crypto-context.jsx";
 import CoinInfo from "./CoinInfo.jsx";
 
 export default function AddAssetForm({onClose}) {
-    const {crypto} = useCrypto()
+    const {crypto, addAsset} = useCrypto()
     const [coin, setCoin] = useState(null)
     const [form] = Form.useForm()
     const [submitted, setSubmitted] = useState(false)
 
-    function onFinish(value) {
-        console.log('finish:', value);
+    function onFinish(values) {
+        console.log('finish:', values);
+        const newAsset = {
+            id: coin.id,
+            amount: values.amount,
+            price: values.price,
+            date: values.date?.$d ?? new Date() ,
+        }
+        addAsset(newAsset)
         setSubmitted(true)
     }
 
