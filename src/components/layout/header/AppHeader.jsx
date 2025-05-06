@@ -1,8 +1,8 @@
 import {Button, Drawer, Layout, Modal, Select, Space} from 'antd';
-import {useCrypto} from "../../context/crypto-context.jsx";
+import {useCrypto} from "../../../context/crypto-context.jsx";
 import {useEffect, useRef, useState} from "react";
-import CryptoInfoModal from "../CryptoInfoModal.jsx";
-import AddAssetForm from "../AddAssetForm.jsx";
+import CryptoInfoModal from "./CryptoInfoModal.jsx";
+import AddAssetForm from "./AddAssetForm.jsx";
 
 const headerStyle = {
     textAlign: 'center',

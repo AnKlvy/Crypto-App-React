@@ -14,7 +14,7 @@ const {assets} = useContext(CryptoContext)
     return (<Layout.Sider width="25%" style={siderStyle}>
         {assets.map((asset) => (<Card key={asset.id} style={{marginBottom: "1rem"}}>
             <Statistic
-                title={capitalize(asset.id)}
+                title={capitalize(asset.name)}
                 value={asset.totalAmount}
                 precision={2}
                 valueStyle={{color: asset.grow ? "#3f8600" : "#cf1322"}}
