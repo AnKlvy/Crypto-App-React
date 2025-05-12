@@ -4,5 +4,5 @@
 
 .card {
     transition: all 0.35s ease;
-    border: #ffc3af solid 2px;
+    border: var(--border-persik) solid 2px;
 }

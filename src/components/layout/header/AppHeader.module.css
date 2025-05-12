@@ -1,0 +1,59 @@
+.custom_select {
+  /*position: relative;*/
+  background-color: var(--background-antd);
+  /*width: 250px;*/
+  padding: 1px;
+  border: var(--border-persik) solid 2px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s ease; /* Плавное изменение цвета рамки */
+}
+
+/* Глобальное переопределение для всех Select */
+:global(.ant-select:not(.ant-select-open)) {
+  /*border-color: var(--border-persik) !important;*/
+  text-align: center !important;
+
+}
+
+
+.select_open {
+  border-color: #fa5115 !important; /* Оранжевая рамка при открытии */
+}
+
+/* Остальные ваши стили остаются без изменений */
+.custom_select * {
+  background-color: transparent !important;
+}
+
+:global(.ant-select-selector) {
+  border-color: transparent !important;
+}
+
+.custom_select:hover {
+  border-color: #fa5115 !important;
+}
+
+.select_display {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.placeholder {
+  color: #aaa;
+}
+
+.select_option {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.select_option:hover {
+  background-color: var(--border-persik);
+}

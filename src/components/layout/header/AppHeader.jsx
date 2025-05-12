@@ -4,6 +4,8 @@ import {useEffect, useRef, useState} from "react";
 import CryptoInfoModal from "./CryptoInfoModal.jsx";
 import AddAssetForm from "./AddAssetForm.jsx";
 
+import styles from "./AppHeader.module.css";
+
 const headerStyle = {
     textAlign: 'center',
     width: '100%',
@@ -22,7 +24,7 @@ export default function AppHeader() {
     const [drawer, setDrawer] = useState(false);
     const selectRef = useRef(null);
     useEffect(() => {
-        const keydown = (event) => {
+        const handleKeydown = (event) => {
             if (event.code === 'Slash') {
                 setSelect((prev) => {
                     const next = !prev;
@@ -32,12 +34,32 @@ export default function AppHeader() {
                             input?.focus();
                         }, 0);
                     }
+                    else {
+                        // При закрытии через / убираем фокус
+                        const input = document.querySelector('.ant-select-selector input');
+                        input?.blur();
+                    }
                     return next;
                 });
+            } else if (event.key === 'ESC') {
+                setSelect(false);
             }
         };
-        document.addEventListener('keydown', keydown);
-        return () => document.removeEventListener('keydown', keydown);
+
+        const handleClickOutside = (event) => {
+            const selectElement = document.querySelector('.ant-select-dropdown');
+            if (selectElement && !selectElement.contains(event.target)) {
+                setSelect(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleKeydown);
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeydown);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
 
     function handleSelect(value) {
@@ -50,6 +72,8 @@ export default function AppHeader() {
             <Select
                 ref={selectRef}
                 style={{width: 250}}
+                className={`${styles.custom_select} ${select ? styles.select_open : ''}`}
+                popupClassName={'bg-antd-elements'}
                 optionLabelProp="label"
                 value="press / to open"
                 open={select}
