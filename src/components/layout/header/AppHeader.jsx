@@ -23,6 +23,7 @@ export default function AppHeader() {
     const [coin, setCoin] = useState(null);
     const [drawer, setDrawer] = useState(false);
     const selectRef = useRef(null);
+    let selectInput = document.querySelector('.ant-select-selector input');
     useEffect(() => {
         const handleKeydown = (event) => {
             if (event.code === 'Slash') {
@@ -36,8 +37,7 @@ export default function AppHeader() {
                     }
                     else {
                         // При закрытии через / убираем фокус
-                        const input = document.querySelector('.ant-select-selector input');
-                        input?.blur();
+                        selectInput?.blur();
                     }
                     return next;
                 });
@@ -48,7 +48,10 @@ export default function AppHeader() {
 
         const handleClickOutside = (event) => {
             const selectElement = document.querySelector('.ant-select-dropdown');
-            if (selectElement && !selectElement.contains(event.target)) {
+            const selectInput = document.querySelector('.ant-select-selector');
+
+            if (selectElement && !selectElement.contains(event.target) &&
+                selectInput && !selectInput.contains(event.target)) {
                 setSelect(false);
             }
         };
@@ -91,7 +94,11 @@ export default function AppHeader() {
                     </Space>
                 )}/>
             <Button type="primary" onClick={() => setDrawer(true)}>Add asset</Button>
-            <Modal open={modal} onCancel={() => setModal(false)} footer={null}>
+            <Modal open={modal} onCancel={() => {
+                setModal(false);
+                selectInput = document.querySelector('.ant-select-selector input');
+                selectInput?.blur()
+            }} footer={null}>
                 <CryptoInfoModal coin={coin}/>
             </Modal>
             <Drawer

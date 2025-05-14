@@ -12,7 +12,14 @@ const siderStyle = {
 export default function AppSider() {
     const {assets} = useContext(CryptoContext)
 
-    return (<Layout.Sider width="25%" style={siderStyle}>
+    return (<Layout.Sider
+        width="25%"
+        style={siderStyle}
+        className={styles.siderHide}
+        breakpoint="sm"
+        collapsedWidth={0}
+        trigger={null} // Удаляем триггер, который может создавать отступ
+         >
         {assets.map((asset) => (
             <Card key={asset.id} style={{
                 marginBottom: "1rem",

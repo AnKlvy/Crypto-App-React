@@ -1,0 +1,21 @@
+
+
+.contentTitle {
+    color: #000000;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    position: absolute;
+}
+
+
+@media (max-width: 1180px) {
+    .contentTitle {
+        flex-direction: column;
+        position: static;
+        font-size: 1.5rem;
+        @media (max-width: 420px) {
+            font-size: 1rem;
+        }
+    }
+}
