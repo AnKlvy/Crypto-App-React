@@ -34,6 +34,10 @@
   border-color: #fa5115 !important;
 }
 
+.custom_select:focus-within {
+  border-color: #fa5115 !important; /* Оранжевая рамка при фокусе с клавиатуры */
+}
+
 .select_display {
   padding: 8px 12px;
   display: flex;

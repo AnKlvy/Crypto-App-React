@@ -70,6 +70,20 @@ export default function AppHeader() {
         setModal(true);
     }
 
+    function handleSelectClick() {
+        setSelect((prev) => {
+            const next = !prev;
+            if (!next) {
+                // При закрытии убираем фокус
+                setTimeout(() => {
+                    const input = document.querySelector('.ant-select-selector input');
+                    input?.blur();
+                }, 0);
+            }
+            return next;
+        });
+    }
+
     return (
         <Layout.Header style={headerStyle}>
             <Select
@@ -86,7 +100,7 @@ export default function AppHeader() {
                     icon: coin.icon,
                 }))}
                 onSelect={handleSelect}
-                onClick={() => setSelect((prev) => !prev)}
+                onClick={handleSelectClick}
                 optionRender={(option) => (
                     <Space>
                         <img style={{width: 20}} src={option.data.icon} alt={option.data.label}/>
