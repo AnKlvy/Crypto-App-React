@@ -23,7 +23,30 @@ export default function AppHeader() {
     const [coin, setCoin] = useState(null);
     const [drawer, setDrawer] = useState(false);
     const selectRef = useRef(null);
-    let selectInput = document.querySelector('.ant-select-selector input');
+    
+    // Функция для удаления фокуса со всех элементов
+    const clearAllFocus = () => {
+        // Убираем фокус с селекта
+        if (selectRef.current) {
+            selectRef.current.blur();
+        }
+        
+        // Убираем фокус с инпута селекта
+        const selectInput = document.querySelector('.ant-select-selector input');
+        if (selectInput) {
+            selectInput.blur();
+        }
+        
+        // Убираем фокус с активного элемента
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+        
+        // Дополнительно можно попробовать установить фокус на body и затем убрать его
+        document.body.focus();
+        document.body.blur();
+    };
+
     useEffect(() => {
         const handleKeydown = (event) => {
             if (event.code === 'Slash') {
@@ -36,13 +59,13 @@ export default function AppHeader() {
                         }, 0);
                     }
                     else {
-                        // При закрытии через / убираем фокус
-                        selectInput?.blur();
+                        clearAllFocus();
                     }
                     return next;
                 });
-            } else if (event.key === 'ESC') {
+            } else if (event.key === 'Escape') {
                 setSelect(false);
+                clearAllFocus();
             }
         };
 
@@ -53,6 +76,7 @@ export default function AppHeader() {
             if (selectElement && !selectElement.contains(event.target) &&
                 selectInput && !selectInput.contains(event.target)) {
                 setSelect(false);
+                clearAllFocus();
             }
         };
 
@@ -68,21 +92,35 @@ export default function AppHeader() {
     function handleSelect(value) {
         setCoin(crypto.find(c => c.id === value));
         setModal(true);
+        setSelect(false);
+        clearAllFocus();
     }
 
     function handleSelectClick() {
         setSelect((prev) => {
             const next = !prev;
             if (!next) {
-                // При закрытии убираем фокус
-                setTimeout(() => {
-                    const input = document.querySelector('.ant-select-selector input');
-                    input?.blur();
-                }, 0);
+                clearAllFocus();
             }
             return next;
         });
     }
+
+    // Обработчик закрытия модального окна
+    useEffect(() => {
+        const handleModalEscape = (event) => {
+            if (event.key === 'Escape' && modal) {
+                setModal(false);
+                clearAllFocus();
+            }
+        };
+
+        document.addEventListener('keydown', handleModalEscape);
+        
+        return () => {
+            document.removeEventListener('keydown', handleModalEscape);
+        };
+    }, [modal]);
 
     return (
         <Layout.Header style={headerStyle}>
@@ -107,21 +145,37 @@ export default function AppHeader() {
                     </Space>
                 )}/>
             <Button type="primary" onClick={() => setDrawer(true)}>Add asset</Button>
-            <Modal open={modal} onCancel={() => {
-                setModal(false);
-                selectInput = document.querySelector('.ant-select-selector input');
-                selectInput?.blur()
-            }} footer={null}>
+            <Modal 
+                open={modal} 
+                onCancel={() => {
+                    setModal(false);
+                    clearAllFocus();
+                }} 
+                afterClose={clearAllFocus}
+                footer={null}
+            >
                 <CryptoInfoModal coin={coin}/>
             </Modal>
             <Drawer
                 width={600}
                 title='Add Asset'
                 open={drawer}
-                onClose={() => setDrawer(false)}
-                destroyOnClose>
+                onClose={() => {
+                    setDrawer(false);
+                    clearAllFocus();
+                }}
+                afterVisibleChange={(visible) => {
+                    if (!visible) {
+                        clearAllFocus();
+                    }
+                }}
+                destroyOnClose
+            >
                 <AddAssetForm
-                    onClose={() => setDrawer(false)}
+                    onClose={() => {
+                        setDrawer(false);
+                        clearAllFocus();
+                    }}
                 />
             </Drawer>
         </Layout.Header>
