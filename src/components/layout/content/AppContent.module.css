@@ -1,4 +1,9 @@
-
+.titleAndChart {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1rem;
+}
 
 .contentTitle {
     color: #000000;
@@ -6,16 +11,33 @@
     margin-bottom: 1rem;
     display: inline-flex;
     position: absolute;
+    font-family: var(--font-nunito);
+    left: 0;
+    top: 0;
 }
 
-
-@media (max-width: 1180px) {
-    .contentTitle {
-        flex-direction: column;
-        position: static;
-        font-size: 1.5rem;
-        @media (max-width: 420px) {
-            font-size: 1rem;
+@media (max-width: 1080px) {
+.contentTitle{
+    position: static; /* Отключаем абсолютное позиционирование */
+}
+    @media (max-width: 900px) {
+        .contentTitle {
+            flex-direction: column;
+            font-size: 1.5rem;
+        }
+        .titleAndChart {
+            align-items: center;
+        }
+        @media (max-width: 480px) {
+            .contentTitle {
+                padding-left: 1rem;
+                font-size:   6vw;
+            }
+            .titleAndChart {
+                /*display: block*/
+                flex-direction: column;
+                align-items: center;
+            }
         }
     }
 }

@@ -88,7 +88,6 @@ export default function AppHeader() {
         <Layout.Header style={headerStyle}>
             <Select
                 ref={selectRef}
-                style={{width: 250}}
                 className={`${styles.custom_select} ${select ? styles.select_open : ''}`}
                 popupClassName={'bg-antd-elements'}
                 optionLabelProp="label"

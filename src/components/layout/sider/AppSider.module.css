@@ -7,3 +7,9 @@
     border: var(--border-persik) solid 2px;
 }
 
+.siderHide{
+    @media (max-width: 980px) {
+        display: none;
+    }
+}
+

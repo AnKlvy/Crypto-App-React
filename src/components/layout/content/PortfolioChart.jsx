@@ -6,13 +6,13 @@ import styles from './PortfolioChart.module.css';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PortfolioChart() {
-    const {assets} = useCrypto()
+    const {assets, isMobile} = useCrypto()
     const data = {
-        labels: assets.map(a=> a.name),
+        labels: assets.map(a => a.name),
         datasets: [
             {
                 label: '$',
-                data: assets.map(a=> a.price*a.amount),
+                data: assets.map(a => a.price * a.amount),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(54, 162, 235, 0.7)',
@@ -33,10 +33,19 @@ export default function PortfolioChart() {
             },
         ],
     };
-    
+
+    const options = {
+        scale: {},
+        plugins: {
+            legend: {
+                position: isMobile ? 'left' : 'top',
+            }
+        }
+    };
+
     return (
         <div className={styles.chartContainer}>
-            <Pie data={data} />
+            <Pie data={data} options={options}/>
         </div>
     );
 }

@@ -23,12 +23,12 @@ export default function AppContent() {
         .reduce((acc, v) => (acc += v), 0)
         .toFixed(2);
 
-        return (<Layout.Content style={contentStyle}>
-        <div style={{display: 'flex'}}>
+    return (<Layout.Content style={contentStyle}>
+        <div className={styles.titleAndChart}>
             <h2 className={styles.contentTitle}>
                 <span>Portfolio:&nbsp;</span><span>{totalPortfolio}$</span></h2>
             <PortfolioChart/>
         </div>
         <AssetsTable/>
     </Layout.Content>);
-        }
+}

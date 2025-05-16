@@ -3,22 +3,13 @@ import {Layout, Spin} from "antd";
 import AppSider from "./sider/AppSider.jsx";
 import AppContent from "./content/AppContent.jsx";
 import {useContext, useState, useEffect} from "react";
-import CryptoContext from "../../context/crypto-context.jsx";
+import CryptoContext, {useCrypto} from "../../context/crypto-context.jsx";
 
 export default function AppLayout() {
-    const {loading} = useContext(CryptoContext);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    const {isLoading, isMobile} = useCrypto();
+
     
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 576);
-        };
-        
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-    
-    if (loading) {
+    if (isLoading) {
         return <Spin fullscreen/>;
     }
     
@@ -26,7 +17,7 @@ export default function AppLayout() {
         <Layout>
             <AppHeader />
             <Layout>
-                {!isMobile && <AppSider />}
+                {<AppSider />}
                 <AppContent />
             </Layout>
         </Layout>

@@ -16,7 +16,7 @@ export default function AppSider() {
         width="25%"
         style={siderStyle}
         className={styles.siderHide}
-        breakpoint="sm"
+        breakpoint="lg"
         collapsedWidth={0}
         trigger={null} // Удаляем триггер, который может создавать отступ
          >

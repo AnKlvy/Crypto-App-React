@@ -1,63 +1,62 @@
 .custom_select {
-  /*position: relative;*/
-  background-color: var(--background-antd);
-  /*width: 250px;*/
-  padding: 1px;
-  border: var(--border-persik) solid 2px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: border-color 0.3s ease; /* Плавное изменение цвета рамки */
+    background-color: var(--background-antd);
+    padding: 1px;
+    border: var(--border-persik) solid 2px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease; /* Плавное изменение цвета рамки */
+    width: 250px;
+    @media (max-width: 476px) {
+        width: 50vw !important;
+    }
+    font-family: 'Kaspersky Sans Mono', monospace;
 }
 
 /* Глобальное переопределение для всех Select */
-:global(.ant-select:not(.ant-select-open)) {
-  /*border-color: var(--border-persik) !important;*/
-  text-align: center !important;
+.custom_select :global(.ant-select:not(.ant-select-open)) {
+    text-align: center !important;
 
 }
 
 
 .select_open {
-  border-color: #fa5115 !important; /* Оранжевая рамка при открытии */
+    border-color: #fa5115 !important; /* Оранжевая рамка при открытии */
 }
 
 /* Остальные ваши стили остаются без изменений */
 .custom_select * {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
-:global(.ant-select-selector) {
-  border-color: transparent !important;
+/* Более специфичный селектор */
+.custom_select :global(.ant-select-selector) {
+    border-color: transparent !important;
 }
 
 .custom_select:hover {
-  border-color: #fa5115 !important;
+    border-color: #fa5115 !important;
 }
 
 .custom_select:focus-within {
-  border-color: #fa5115 !important; /* Оранжевая рамка при фокусе с клавиатуры */
+    border-color: #fa5115 !important; /* Оранжевая рамка при фокусе с клавиатуры */
 }
 
 .select_display {
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
 }
 
 .placeholder {
-  color: #aaa;
+    color: #aaa;
 }
 
 .select_option {
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-}
-
-.select_option:hover {
-  background-color: var(--border-persik);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
 }
