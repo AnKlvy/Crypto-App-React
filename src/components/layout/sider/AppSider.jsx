@@ -13,7 +13,7 @@ export default function AppSider() {
     const {assets} = useContext(CryptoContext)
 
     return (<Layout.Sider
-        width="25%"
+        width="40%"
         style={siderStyle}
         className={styles.siderHide}
         breakpoint="lg"

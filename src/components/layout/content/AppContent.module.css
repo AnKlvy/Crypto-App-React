@@ -3,6 +3,7 @@
     justify-content: center;
     position: relative;
     margin-bottom: 1rem;
+    flex-direction: row-reverse;
 }
 
 .contentTitle {
@@ -12,14 +13,17 @@
     display: inline-flex;
     position: absolute;
     font-family: var(--font-nunito);
-    left: 0;
+    right: 0;
     top: 0;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1300px) {
 .contentTitle{
     position: static; /* Отключаем абсолютное позиционирование */
 }
+    /*.titleAndChart{*/
+    /*    flex-direction: column;*/
+    /*}*/
     @media (max-width: 900px) {
         .contentTitle {
             flex-direction: column;
