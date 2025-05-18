@@ -15,7 +15,7 @@ export function CryptoContextProvider({children}) {
     const [isLoading, setIsLoading] = useState(false);
     const [crypto, setCrypto] = useState([]);
     const [assets, setAssets] = useState([]);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+    const [isMobile, setIsMobile] = useState( window.innerWidth > 500 && window.innerWidth <= 900);
 
     function mapAssets(assets, result) {
         return assets.map(asset => {
@@ -46,7 +46,7 @@ export function CryptoContextProvider({children}) {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 900);
+            setIsMobile(window.innerWidth > 500 && window.innerWidth <= 900);
         };
 
         window.addEventListener('resize', handleResize);

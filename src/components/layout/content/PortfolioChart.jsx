@@ -34,7 +34,7 @@ export default function PortfolioChart() {
         ],
     };
 
-    const leftOrTop = isMobile && window.innerWidth > 500
+    const leftOrTop = isMobile
     const options = {
         scale: {},
         plugins: {
