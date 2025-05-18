@@ -24,7 +24,8 @@ export default function AppHeader() {
     const [coin, setCoin] = useState(null);
     const [drawer, setDrawer] = useState(false);
     const selectRef = useRef(null);
-    
+    const prevModalRef = useRef(modal);
+
     // Функция для удаления фокуса со всех элементов
     const clearAllFocus = () => {
         // Убираем фокус с селекта
@@ -115,6 +116,15 @@ export default function AppHeader() {
                 clearAllFocus();
             }
         };
+
+        // Проверяем изменение состояния модального окна
+        if (modal) {
+            setSelect(false);
+        } else if (prevModalRef.current && !modal) {
+            // Открываем селект только при закрытии модального окна
+            setSelect(true);
+        }
+        prevModalRef.current = modal;
 
         document.addEventListener('keydown', handleModalEscape);
         
