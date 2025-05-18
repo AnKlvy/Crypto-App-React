@@ -17,7 +17,8 @@
     height: 85vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: 16px;
+    padding-right: 26px;
+    margin-right: -10px;
 
     /* Chrome, Edge, Safari */
     scrollbar-width: none; /* Firefox */
@@ -29,7 +30,7 @@
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
     scrollbar-gutter: stable;
-    padding-right: 6px;
+    padding-right: 16px;
 }
 
 /* Chrome, Edge, Safari */
