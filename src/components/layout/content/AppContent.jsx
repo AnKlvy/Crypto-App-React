@@ -10,6 +10,7 @@ const contentStyle = {
     minHeight: "calc(100vh - 60px)",
     color: "#fff",
     padding: '1rem',
+    marginBottom: 0
 };
 
 export default function AppContent() {

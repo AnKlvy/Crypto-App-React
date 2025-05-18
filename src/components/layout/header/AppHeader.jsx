@@ -172,7 +172,7 @@ export default function AppHeader() {
                     setDrawer(false);
                     clearAllFocus();
                 }}
-                afterVisibleChange={(visible) => {
+                afterOpenChange={(visible) => {
                     if (!visible) {
                         clearAllFocus();
                     }
