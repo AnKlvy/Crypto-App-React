@@ -6,7 +6,7 @@ import styles from './PortfolioChart.module.css';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PortfolioChart() {
-    const {assets, isMobile} = useCrypto()
+    const {assets, deviceWidth} = useCrypto()
     const data = {
         labels: assets.map(a => a.name),
         datasets: [
@@ -34,9 +34,8 @@ export default function PortfolioChart() {
         ],
     };
 
-    const leftOrTop = isMobile
+    const leftOrTop =deviceWidth > 480 && deviceWidth <=900;
     const options = {
-        scale: {},
         plugins: {
             legend: {
                 position: leftOrTop ? 'left' : 'top',

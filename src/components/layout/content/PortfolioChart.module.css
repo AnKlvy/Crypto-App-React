@@ -1,7 +1,7 @@
 .chartContainer {
     margin: 0;
     height: 370px;
-    width: 100%;
+    /*width: 100%;*/
     display: flex;
     justify-content: center;
 

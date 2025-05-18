@@ -3,6 +3,8 @@ import {useCrypto} from "../../../context/crypto-context.jsx";
 import PortfolioChart from "./PortfolioChart.jsx";
 import AssetsTable from "./AssetsTable.jsx";
 import styles from "./AppContent.module.css";
+import PortfolioTotal from "./PortfolioTotal.jsx";
+import NewsComponent from "./NewsComponent.jsx";
 
 const contentStyle = {
     minHeight: "calc(100vh - 60px)",
@@ -11,22 +13,11 @@ const contentStyle = {
 };
 
 export default function AppContent() {
-    const {assets, crypto} = useCrypto()
-
-    const cryptoPriceMap = crypto.reduce((acc, c) => {
-        acc[c.id] = c.price
-        return acc
-    }, {})
-
-    const totalPortfolio = assets
-        .map((asset) => asset.amount * cryptoPriceMap[asset.id])
-        .reduce((acc, v) => (acc += v), 0)
-        .toFixed(2);
-
+    const {deviceWidth}=useCrypto()
     return (<Layout.Content style={contentStyle}>
         <div className={styles.titleAndChart}>
-            <h2 className={styles.contentTitle}>
-                <span>Portfolio:&nbsp;</span><span>{totalPortfolio}$</span></h2>
+            {deviceWidth>900 && <NewsComponent />}
+            {(deviceWidth < 900) && <PortfolioTotal/>}
             <PortfolioChart/>
         </div>
         <AssetsTable/>

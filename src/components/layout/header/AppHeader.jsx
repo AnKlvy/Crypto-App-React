@@ -5,6 +5,7 @@ import CryptoInfoModal from "./CryptoInfoModal.jsx";
 import AddAssetForm from "./AddAssetForm.jsx";
 
 import styles from "./AppHeader.module.css";
+import PortfolioTotal from "../content/PortfolioTotal.jsx";
 
 const headerStyle = {
     textAlign: 'center',
@@ -17,7 +18,7 @@ const headerStyle = {
 };
 
 export default function AppHeader() {
-    const {crypto} = useCrypto();
+    const {crypto, deviceWidth} = useCrypto();
     const [select, setSelect] = useState(false)
     const [modal, setModal] = useState(false);
     const [coin, setCoin] = useState(null);
@@ -144,8 +145,15 @@ export default function AppHeader() {
                         {option.data.label}
                     </Space>
                 )}/>
-            <Button type="primary" onClick={() => setDrawer(true)}>Add asset</Button>
-            <Modal 
+
+            <div style={{display: 'flex', justifyContent: "end", alignItems: "center"}}>
+                {(deviceWidth > 900) && <PortfolioTotal/>}
+
+
+                <Button type="primary" onClick={() => setDrawer(true)}>Add asset</Button>
+
+            </div>
+            <Modal
                 open={modal} 
                 onCancel={() => {
                     setModal(false);

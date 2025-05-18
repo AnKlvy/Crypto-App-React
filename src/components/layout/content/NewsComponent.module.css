@@ -1,0 +1,24 @@
+.newsContainer {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.newsCard {
+  height: 100%;
+  border: var(--border-persik) solid 2px;
+  background-color: var(--background-antd);
+}
+
+@media (max-width: 900px) {
+  .newsContainer {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsContainer {
+    margin-bottom: 1rem;
+  }
+}
