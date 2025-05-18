@@ -4,7 +4,7 @@
 }
 
 .newsCard {
-  height: 100%;
+  height: 90%;
   border: var(--border-persik) solid 2px;
   background-color: var(--background-antd);
 }
@@ -12,13 +12,13 @@
 @media (max-width: 900px) {
   .newsContainer {
     margin-right: 0;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .newsContainer {
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
   }
 }

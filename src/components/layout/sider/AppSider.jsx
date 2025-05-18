@@ -4,6 +4,7 @@ import {useContext} from "react";
 import {capitalize} from "../../../utils.js";
 import CryptoContext from "../../../context/crypto-context.jsx";
 import styles from './AppSider.module.css';
+import MyTag from "../../shared/MyTag/MyTag.jsx";
 
 const siderStyle = {
     padding: "1rem",
@@ -12,7 +13,8 @@ const siderStyle = {
 export default function AppSider() {
     const {assets} = useContext(CryptoContext)
 
-    return (<Layout.Sider
+    return (
+        <Layout.Sider
         width="25%"
         style={siderStyle}
         className={styles.siderHide}
@@ -20,7 +22,8 @@ export default function AppSider() {
         collapsedWidth={0}
         trigger={null} // Удаляем триггер, который может создавать отступ
          >
-        {assets.map((asset) => (
+            <MyTag>History</MyTag>
+            {assets.map((asset) => (
             <Card key={asset.id} style={{
                 marginBottom: "1rem",
                 userSelect: "none",
