@@ -34,11 +34,12 @@ export default function PortfolioChart() {
         ],
     };
 
+    const leftOrTop = isMobile && window.innerWidth > 500
     const options = {
         scale: {},
         plugins: {
             legend: {
-                position: isMobile ? 'left' : 'top',
+                position: leftOrTop ? 'left' : 'top',
             }
         }
     };
